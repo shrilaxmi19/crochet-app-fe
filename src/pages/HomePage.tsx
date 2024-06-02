@@ -1,5 +1,5 @@
 import landingImage from "../assets/land2.jpg";
-import appDownloadImage from "../assets/appDownload.png";
+// import appDownloadImage from "../assets/appDownload.png";
 import SearchBar
 //  { SearchForm } 
  from "@/components/SearchBar";

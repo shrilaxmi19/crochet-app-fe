@@ -5,7 +5,7 @@
 import { Search } from "lucide-react";
 // import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 // const formSchema = z.object({
 //   searchQuery: z.string({
@@ -15,12 +15,12 @@ import { useEffect } from "react";
 
 // export type SearchForm = z.infer<typeof formSchema>;
 
-type Props = {
-//   onSubmit: (formData: SearchForm) => void;
-  placeHolder: string;
-  onReset?: () => void;
-  searchQuery?: string;
-};
+// type Props = {
+// //   onSubmit: (formData: SearchForm) => void;
+//   placeHolder: string;
+//   onReset?: () => void;
+//   searchQuery?: string;
+// };
 
 const SearchBar = (
     // { 
