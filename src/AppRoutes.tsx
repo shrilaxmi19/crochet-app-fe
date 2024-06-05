@@ -4,10 +4,10 @@ import HomePage from "./pages/HomePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-// import ManageRestaurantPage from "./pages/ManageRestaurantPage";
-// import SearchPage from "./pages/SearchPage";
-// import DetailPage from "./pages/DetailPage";
-// import OrderStatusPage from "./pages/OrderStatusPage";
+import ManageRestaurantPage from "./pages/ManageRestaurantPage";
+import SearchPage from "./pages/SearchPage";
+import DetailPage from "./pages/DetailPage";
+import OrderStatusPage from "./pages/OrderStatusPage";
 
 const AppRoutes = () => {
   return (
@@ -28,32 +28,33 @@ const AppRoutes = () => {
       <Route
         path="/search/:city"
         element={
-       <span>Home</span>
+      
+          // <span>Home3</span>
             
-        //   <Layout showHero={false}>
-        //     <SearchPage />
-        //   </Layout>
+          <Layout showHero={false}>
+            <SearchPage />
+          </Layout>
         }
       />
       <Route
         path="/detail/:restaurantId"
         element={
-       <span>Home2</span>
-
-        //   <Layout showHero={false}>
-        //     <DetailPage />
-        //   </Layout>
+       
+          // <span>Home3</span>
+          <Layout showHero={false}>
+            <DetailPage />
+          </Layout>
         }
       />
        <Route element={<ProtectedRoute />}>
         <Route
           path="/order-status"
           element={
-       <span>Home4</span>
+      //  <span>Home4</span>
 
-            // <Layout>
-            //   <OrderStatusPage />
-            // </Layout>
+            <Layout>
+              <OrderStatusPage />
+            </Layout>
           }
         />
         <Route
@@ -67,11 +68,10 @@ const AppRoutes = () => {
         <Route
           path="/manage-restaurant"
           element={
-       <span>Home5</span>
-
-            // <Layout>
-            //   <ManageRestaurantPage />
-            // </Layout>
+     
+            <Layout>
+              <ManageRestaurantPage />
+            </Layout>
           }
         />
       </Route>

@@ -1,19 +1,17 @@
 import landingImage from "../assets/land2.jpg";
-// import appDownloadImage from "../assets/appDownload.png";
-import SearchBar
-//  { SearchForm } 
- from "@/components/SearchBar";
-// import { useNavigate } from "react-router-dom";
+import appDownloadImage from "../assets/appDownload.png";
+import SearchBar , { SearchForm } from "@/components/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-//   const handleSearchSubmit = (searchFormValues: SearchForm) => {
-//     navigate({
-//       pathname: `/search/${searchFormValues.searchQuery}`,
+  const handleSearchSubmit = (searchFormValues: SearchForm) => {
+    navigate({
+      pathname: `/search/${searchFormValues.searchQuery}`,
 
-//     });
-//   };
+    });
+  };
 
 
   return (
@@ -24,8 +22,8 @@ const HomePage = () => {
         </h1>
         <span className="text-xl">Your Customized order is just a click away!</span> 
         <SearchBar
-          // placeHolder="Search by City or Town"
-          // onSubmit={handleSearchSubmit}
+          placeHolder="Search by City or Town"
+          onSubmit={handleSearchSubmit}
         />
       </div> 
       <div className="grid md:grid-cols-2 gap-5">
@@ -38,7 +36,7 @@ const HomePage = () => {
         
           Welcome to our crochet shop! Place your orders here for pick-up and take away. Enjoy the convenience of shopping online and picking up your beautifully handcrafted crochet items at your convenience.
           </span>
-          {/* <img src={appDownloadImage} /> */}
+          <img src={appDownloadImage} />
         </div>
       </div>
     </div>
