@@ -1,5 +1,5 @@
 import { useGetRestaurant } from "@/api/RestaurantApi";
-import MenuItem from "@/components/MenuItem";
+import MenuItems from "@/components/MenuItem";
 import OrderSummary from "@/components/OrderSummary";
 import RestaurantInfo from "@/components/RestaurantInfo";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -108,6 +108,32 @@ const DetailPage = () => {
     return "Loading...";
   }
 
+  // // Map over menuItems and add imageUrl from local storage
+  // const menuItemsWithImages = restaurant.menuItems.map((menuItem) => {
+  //   const imageUrl = localStorage.getItem(`menuItems.${menuItem._id}.imageUrl`);
+  //   return {
+  //     ...menuItem,
+  //     imageUrl: imageUrl || "",
+  //   };
+  // });
+  // Inside the DetailPage component
+  const menuItemsWithImages = restaurant.menuItems.map((menuItem, index) => {
+    // Assuming index is used in localStorage keys
+    const localStorageKey = `menuItems.${index}.imageUrl`;
+    const imageUrl = localStorage.getItem(localStorageKey);
+    
+    console.log(`Retrieved imageUrl for ${menuItem.name}:`, imageUrl);
+    
+    return {
+      ...menuItem,
+      imageUrl: imageUrl || "", // Default value if imageUrl is null or undefined
+    };
+  });
+  
+
+
+
+
   return (
     <div className="flex flex-col gap-10">
       <AspectRatio ratio={16 / 5}>
@@ -119,9 +145,10 @@ const DetailPage = () => {
       <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-32">
         <div className="flex flex-col gap-4">
           <RestaurantInfo restaurant={restaurant} />
-          <span className="text-2xl font-bold tracking-tight">Menu</span>
-          {restaurant.menuItems.map((menuItem) => (
-            <MenuItem
+          <span className="text-2xl font-bold tracking-tight">Products</span>
+          {menuItemsWithImages.map((menuItem) => (
+            <MenuItems
+              key={menuItem._id}
               menuItem={menuItem}
               addToCart={() => addToCart(menuItem)}
             />
