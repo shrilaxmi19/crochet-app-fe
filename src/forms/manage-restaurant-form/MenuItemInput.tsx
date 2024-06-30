@@ -18,31 +18,35 @@ type Props = {
 };
 
 const MenuItemInput = ({ index, removeMenuItem }: Props) => {
-  const { control, setValue } = useFormContext();
+  const { control, setValue, watch } = useFormContext();
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
+  const menuItem = watch(`menuItems.${index}`);
+
+  // Function to fetch existing image URL
+  const fetchExistingImageUrl = async () => {
+    if (menuItem?.imageFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setExistingImageUrl(reader.result as string);
+      };
+      reader.readAsDataURL(menuItem.imageFile);
+    } else if (menuItem?.imageUrl) {
+      // If image URL exists in backend, set it directly
+      setExistingImageUrl(menuItem.imageUrl);
+    }
+  };
 
   useEffect(() => {
-    // Retrieve imageUrl from localStorage on component mount
-    const savedImageUrl = localStorage.getItem(`menuItems.${index}.imageUrl`);
-    console.log(savedImageUrl, "kk");
-    
-    if (savedImageUrl) {
-      setExistingImageUrl(savedImageUrl);
-      setValue(`menuItems.${index}.imageUrl`, savedImageUrl);
-    }
-  }, [index, setValue]);
+    fetchExistingImageUrl(); // Fetch image URL on component mount
+  }, [menuItem?.imageFile, menuItem?.imageUrl]);
 
   const handleImageChange = (file: File | null) => {
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imageUrl = reader.result as string;
-        // Save imageUrl to localStorage
-        localStorage.setItem(`menuItems.${index}.imageUrl`, imageUrl);
-        setExistingImageUrl(imageUrl);
-        setValue(`menuItems.${index}.imageUrl`, imageUrl);
-      };
-      reader.readAsDataURL(file);
+      setValue(`menuItems.${index}.imageFile`, file, { shouldValidate: true });
+      setExistingImageUrl(URL.createObjectURL(file)); // Set image preview
+    } else {
+      setValue(`menuItems.${index}.imageFile`, null, { shouldValidate: true });
+      setExistingImageUrl(null); // Clear image preview
     }
   };
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import MainNav from "./MainNav";
+import logo from "../assets/trokes (2).png"
 
 
 const Header = () => {
@@ -11,7 +12,7 @@ const Header = () => {
           to="/"
           className="text-3xl font-bold tracking-tight text-orange-500"
         >
-           HandMadeByLaxmi.com
+           <img src={logo} alt="logo" style={{ width: '200px', height: '100px' }} />
         </Link>
         <div className="md:hidden">
           <MobileNav/>

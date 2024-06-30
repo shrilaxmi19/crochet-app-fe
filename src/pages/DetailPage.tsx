@@ -108,29 +108,6 @@ const DetailPage = () => {
     return "Loading...";
   }
 
-  // // Map over menuItems and add imageUrl from local storage
-  // const menuItemsWithImages = restaurant.menuItems.map((menuItem) => {
-  //   const imageUrl = localStorage.getItem(`menuItems.${menuItem._id}.imageUrl`);
-  //   return {
-  //     ...menuItem,
-  //     imageUrl: imageUrl || "",
-  //   };
-  // });
-  // Inside the DetailPage component
-  const menuItemsWithImages = restaurant.menuItems.map((menuItem, index) => {
-    // Assuming index is used in localStorage keys
-    const localStorageKey = `menuItems.${index}.imageUrl`;
-    const imageUrl = localStorage.getItem(localStorageKey);
-    
-    console.log(`Retrieved imageUrl for ${menuItem.name}:`, imageUrl);
-    
-    return {
-      ...menuItem,
-      imageUrl: imageUrl || "", // Default value if imageUrl is null or undefined
-    };
-  });
-  
-
 
 
 
@@ -146,12 +123,29 @@ const DetailPage = () => {
         <div className="flex flex-col gap-4">
           <RestaurantInfo restaurant={restaurant} />
           <span className="text-2xl font-bold tracking-tight">Products</span>
-          {menuItemsWithImages.map((menuItem) => (
-            <MenuItems
-              key={menuItem._id}
-              menuItem={menuItem}
-              addToCart={() => addToCart(menuItem)}
-            />
+          {restaurant.menuItems.map((menuItem) => (
+
+<MenuItems
+key={menuItem._id}
+menuItem={menuItem}
+addToCart={() => addToCart(menuItem)}
+/>
+            // <div
+            //   key={menuItem._id}
+            //   className="flex flex-col md:flex-row items-center gap-2 md:gap-8 py-4 px-8 border"
+            // >
+            //   <AspectRatio ratio={16 / 9} className="bg-slate-300 w-full md:max-w-[200px]">
+            //     <img
+            //       src={menuItem.imageUrl}
+            //       alt={menuItem.name}
+            //       className="rounded-md object-cover h-full w-full"
+            //     />
+            //   </AspectRatio>
+            //   <div className="flex flex-col gap-2 w-full">
+            //     <span className="text-lg font-medium">{menuItem.name}</span>
+            //     <span className="text-foreground/50">₹{(menuItem.price / 100).toFixed(2)}</span>
+            //   </div>
+            // </div>
           ))}
         </div>
 
