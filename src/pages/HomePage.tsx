@@ -1,4 +1,4 @@
-import landingImage from "../assets/Untitled Project.jpg";
+import landingImage from "../assets/69872e1efba26d58a941943cc7169a4c3f7d87be.webp";
 
 import SearchBar , { SearchForm } from "@/components/SearchBar";
 import { useNavigate } from "react-router-dom";
