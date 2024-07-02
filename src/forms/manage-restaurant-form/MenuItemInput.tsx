@@ -9,7 +9,7 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+
 import { useFormContext } from "react-hook-form";
 
 type Props = {
