@@ -34,6 +34,8 @@ const OrderItemCard = ({ order }: Props) => {
     setStatus(newStatus);
   };
 
+  console.log(order, "order");
+
   const getTime = () => {
     const orderDateTime = new Date(order.createdAt);
 
@@ -43,6 +45,21 @@ const OrderItemCard = ({ order }: Props) => {
     const paddedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
     return `${hours}:${paddedMinutes}`;
+  };
+
+  const getTotalCost = () => {
+    if (order.totalAmount && typeof order.totalAmount === "number") {
+      return `₹${(order.totalAmount / 100).toFixed(2)}`;
+    } else {
+      const totalAmount = order.cartItems.reduce((total, item: any) => {
+        const menuItem = order.restaurant.menuItems.find(
+          (menuItem) => menuItem._id === item.menuItemId
+        );
+        return total + (menuItem ? menuItem.price * item.quantity : 0);
+      }, 0);
+      const totalWithDelivery = totalAmount + order.restaurant.deliveryPrice;
+      return `₹${(totalWithDelivery / 100).toFixed(2)}`;
+    }
   };
 
   return (
@@ -68,7 +85,7 @@ const OrderItemCard = ({ order }: Props) => {
           <div>
             Total Cost:
             <span className="ml-2 font-normal">
-            ₹{(order.totalAmount / 100).toFixed(2)}
+              {getTotalCost()}
             </span>
           </div>
         </CardTitle>
@@ -77,8 +94,7 @@ const OrderItemCard = ({ order }: Props) => {
       <CardContent className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           {order.cartItems.map((cartItem) => (
-           
-            <span>
+            <span key={cartItem._id}>
               <Badge variant="outline" className="mr-2">
                 {cartItem.quantity}
               </Badge>
@@ -98,7 +114,7 @@ const OrderItemCard = ({ order }: Props) => {
             </SelectTrigger>
             <SelectContent position="popper">
               {ORDER_STATUS.map((status) => (
-                <SelectItem value={status.value}>{status.label}</SelectItem>
+                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>

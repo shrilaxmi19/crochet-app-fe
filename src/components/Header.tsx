@@ -6,11 +6,11 @@ import logo from "../assets/trokes (2).png"
 
 const Header = () => {
   return (
-    <div className="border-b-2 border-b-orange-500 py-6">
+    <div className="border-b-2 border-b-pink-400 py-6">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           to="/"
-          className="text-3xl font-bold tracking-tight text-orange-500"
+          className="text-3xl font-bold tracking-tight text-pink-400"
         >
            <img src={logo} alt="logo" style={{ width: '200px', height: '100px' }} />
         </Link>

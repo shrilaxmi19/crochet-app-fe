@@ -6,6 +6,21 @@ type Props = {
 };
 
 const OrderStatusDetail = ({ order }: Props) => {
+  const getTotalCost = () => {
+    if (order.totalAmount && typeof order.totalAmount === "number") {
+      return (order.totalAmount / 100).toFixed(2);
+    } else {
+      const totalAmount = order.cartItems.reduce((total, item: any) => {
+        const menuItem = order.restaurant.menuItems.find(
+          (menuItem) => menuItem._id === item.menuItemId
+        );
+        return total + (menuItem ? menuItem.price * item.quantity : 0);
+      }, 0);
+      const totalWithDelivery = totalAmount + order.restaurant.deliveryPrice;
+      return (totalWithDelivery / 100).toFixed(2);
+    }
+  };
+
   return (
     <div className="space-y-5">
       <div className="flex flex-col">
@@ -19,7 +34,7 @@ const OrderStatusDetail = ({ order }: Props) => {
         <span className="font-bold">Your Order</span>
         <ul>
           {order.cartItems.map((item) => (
-            <li>
+            <li key={item._id}>
               {item.name} x {item.quantity}
             </li>
           ))}
@@ -28,7 +43,7 @@ const OrderStatusDetail = ({ order }: Props) => {
       <Separator />
       <div className="flex flex-col">
         <span className="font-bold">Total</span>
-        <span>₹{(order.totalAmount / 100).toFixed(2)}</span>
+        <span>₹{getTotalCost()}</span>
       </div>
     </div>
   );

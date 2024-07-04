@@ -17,7 +17,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-12">
       <div className="md:px-32 bg-white rounded-lg shadow-md py-8 flex flex-col gap-5 text-center -mt-16">
-        <h1 className="text-5xl font-bold tracking-tight text-orange-600">
+        <h1 className="text-5xl font-bold tracking-tight text-pink-400">
         Transform your space with our curated selection of customized paintings and handmade crochet items – shop our unique creations now!
         </h1>
         <span className="text-xl">Your Customized order is just a click away!</span> 

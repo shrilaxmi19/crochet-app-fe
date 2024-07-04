@@ -118,7 +118,7 @@ const DetailPage = () => {
   <span className="text-foreground/50">₹{(menuItem.price / 100).toFixed(2)}</span>
   <button
     onClick={() => addToCart(menuItem)}
-    className="bg-orange-500 text-white px-4 py-2 rounded-sm text-sm w-40"
+    className="bg-pink-400 text-white px-4 py-2 rounded-sm text-sm w-40"
   >
     Add to Cart
   </button>
