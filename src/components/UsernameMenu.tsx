@@ -30,7 +30,7 @@ const UsernameMenu = () => {
         {isAdmin && (
           <DropdownMenuItem>
             <Link
-              to="/manage-restaurant"
+              to="/manage-store"
               className="font-bold hover:text-pink-400"
             >
               Manage Store

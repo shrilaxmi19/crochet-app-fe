@@ -7,5 +7,7 @@ export const cuisineList = [
   "Acrylic paintings",
   "Gouache paintings",
   "Crochet dreamcatcher",
+  "Paintings",
+  "Crochet"
  
 ];

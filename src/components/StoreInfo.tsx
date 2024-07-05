@@ -1,4 +1,4 @@
-import { Restaurant } from "@/types";
+import { Store } from "@/types";
 import {
   Card,
   CardContent,
@@ -9,10 +9,10 @@ import {
 import { Dot } from "lucide-react";
 
 type Props = {
-  restaurant: Restaurant;
+  restaurant: Store;
 };
 
-const RestaurantInfo = ({ restaurant }: Props) => {
+const StoreInfo = ({ restaurant }: Props) => {
   return (
     <Card className="border-sla">
       <CardHeader>
@@ -35,4 +35,4 @@ const RestaurantInfo = ({ restaurant }: Props) => {
   );
 };
 
-export default RestaurantInfo;
+export default StoreInfo;

@@ -9,7 +9,7 @@ type OrderStatusInfo = {
 export const ORDER_STATUS: OrderStatusInfo[] = [
   { label: "Placed", value: "placed", progressValue: 0 },
   {
-    label: "Awaiting Restaurant Confirmation",
+    label: "Awaiting Store Confirmation",
     value: "paid",
     progressValue: 25,
   },

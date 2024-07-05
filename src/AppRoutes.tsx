@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import ManageRestaurantPage from "./pages/ManageRestaurantPage";
+import ManageStorePage from "./pages/ManageStorePage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
@@ -66,11 +66,11 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/manage-restaurant"
+          path="/manage-store"
           element={
      
             <Layout>
-              <ManageRestaurantPage />
+              <ManageStorePage />
             </Layout>
           }
         />

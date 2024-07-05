@@ -1,6 +1,6 @@
-import { useGetRestaurant } from "@/api/RestaurantApi";
+import { useGetStore } from "@/api/StoreApi";
 import OrderSummary from "@/components/OrderSummary";
-import RestaurantInfo from "@/components/RestaurantInfo";
+import StoreInfo from "@/components/StoreInfo";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardFooter } from "@/components/ui/card";
 import { useState } from "react";
@@ -19,7 +19,7 @@ export type CartItem = {
 
 const DetailPage = () => {
   const { restaurantId } = useParams();
-  const { restaurant, isLoading } = useGetRestaurant(restaurantId);
+  const { restaurant, isLoading } = useGetStore(restaurantId);
   const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession();
 
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
@@ -101,7 +101,7 @@ const DetailPage = () => {
       </AspectRatio>
       <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-32">
         <div className="flex flex-col gap-4">
-          <RestaurantInfo restaurant={restaurant} />
+          <StoreInfo restaurant={restaurant} />
           <span className="text-2xl font-bold tracking-tight">Products</span>
           {restaurant.menuItems.map((menuItem) => (
             <div key={menuItem._id} className="flex flex-col md:flex-row items-center gap-2 md:gap-8 py-4 px-8 border">

@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { ORDER_STATUS } from "@/config/order-status-config";
-import { useUpdateMyRestaurantOrder } from "@/api/MyRestaurantApi";
+import { useUpdateMyStoreOrder } from "@/api/MyStoreApi";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const OrderItemCard = ({ order }: Props) => {
-  const { updateRestaurantStatus, isLoading } = useUpdateMyRestaurantOrder();
+  const { updateStoreStatus, isLoading } = useUpdateMyStoreOrder();
   const [status, setStatus] = useState<OrderStatus>(order.status);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const OrderItemCard = ({ order }: Props) => {
   }, [order.status]);
 
   const handleStatusChange = async (newStatus: OrderStatus) => {
-    await updateRestaurantStatus({
+    await updateStoreStatus({
       orderId: order._id as string,
       status: newStatus,
     });

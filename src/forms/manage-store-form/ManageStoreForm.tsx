@@ -9,13 +9,13 @@ import MenuSection from "./MenuSection";
 import ImageSection from "./ImageSection";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
-import { Restaurant } from "@/types";
+import { Store } from "@/types";
 import { useEffect } from "react";
 
 const formSchema = z
   .object({
     restaurantName: z.string({
-      required_error: "Restaurant name is required",
+      required_error: "Store name is required",
     }),
     city: z.string({
       required_error: "City is required",
@@ -28,7 +28,7 @@ const formSchema = z
       invalid_type_error: "Must be a valid number",
     }),
     estimatedDeliveryTime: z.coerce.number({
-      required_error: "Estimated delivery time is required",
+      required_error: "Estimated delivery date is required",
       invalid_type_error: "Must be a valid number",
     }),
     cuisines: z.array(z.string()).nonempty({
@@ -50,16 +50,16 @@ const formSchema = z
     path: ["imageFile"],
   });
 
-type RestaurantFormData = z.infer<typeof formSchema>;
+type StoreFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  restaurant?: Restaurant;
+  restaurant?: Store;
   onSave: (restaurantFormData: FormData) => void;
   isLoading: boolean;
 };
 
-const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
-  const form = useForm<RestaurantFormData>({
+const ManageStoreForm = ({ onSave, isLoading, restaurant }: Props) => {
+  const form = useForm<StoreFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       cuisines: [],
@@ -81,16 +81,16 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       price: parseInt((item.price / 100).toFixed(2)),
     }));
 
-    const updatedRestaurant = {
+    const updatedStore = {
       ...restaurant,
       deliveryPrice: deliveryPriceFormatted,
       menuItems: menuItemsFormatted,
     };
 
-    form.reset(updatedRestaurant);
+    form.reset(updatedStore);
   }, [form, restaurant]);
 
-  const onSubmit = async (formDataJson: RestaurantFormData) => {
+  const onSubmit = async (formDataJson: StoreFormData) => {
     console.log("Form Data JSON:", formDataJson);  // Debug log
   
     const formData = new FormData();
@@ -140,4 +140,4 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   );
 };
 
-export default ManageRestaurantForm;
+export default ManageStoreForm;

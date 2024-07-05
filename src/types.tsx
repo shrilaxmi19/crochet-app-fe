@@ -15,7 +15,7 @@ export type User = {
     price: number;
     imageUrl?: string;
   };
-  export type Restaurant = {
+  export type Store = {
     _id: string;
     user: string;
     restaurantName: string;
@@ -38,7 +38,7 @@ export type User = {
   
   export type Order = {
     _id: string;
-    restaurant: Restaurant;
+    restaurant: Store;
     user: User;
     cartItems: {
       _id: Key | null | undefined;
@@ -58,8 +58,8 @@ export type User = {
     restaurantId: string;
   };
   
-  export type RestaurantSearchResponse = {
-    data: Restaurant[];
+  export type StoreSearchResponse = {
+    data: Store[];
     pagination: {
       total: number;
       page: number;

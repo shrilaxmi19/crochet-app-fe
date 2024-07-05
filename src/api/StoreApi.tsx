@@ -1,25 +1,25 @@
 import { SearchState } from "@/pages/SearchPage";
-import { Restaurant, RestaurantSearchResponse } from "@/types";
+import { Store, StoreSearchResponse } from "@/types";
 import { useQuery } from "react-query";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useGetRestaurant = (restaurantId?: string) => {
-  const getRestaurantByIdRequest = async (): Promise<Restaurant> => {
+export const useGetStore = (restaurantId?: string) => {
+  const getStoreByIdRequest = async (): Promise<Store> => {
     const response = await fetch(
-      `${API_BASE_URL}/api/restaurant/${restaurantId}`
+      `${API_BASE_URL}/api/store/${restaurantId}`
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get restaurant");
+      throw new Error("Failed to get store");
     }
 
     return response.json();
   };
 
   const { data: restaurant, isLoading } = useQuery(
-    "fetchRestaurant",
-    getRestaurantByIdRequest,
+    "fetchStore",
+    getStoreByIdRequest,
     {
       enabled: !!restaurantId,
     }
@@ -28,11 +28,11 @@ export const useGetRestaurant = (restaurantId?: string) => {
   return { restaurant, isLoading };
 };
 
-export const useSearchRestaurants = (
+export const useSearchStores = (
   searchState: SearchState,
   city?: string
 ) => {
-  const createSearchRequest = async (): Promise<RestaurantSearchResponse> => {
+  const createSearchRequest = async (): Promise<StoreSearchResponse> => {
     const params = new URLSearchParams();
     params.set("searchQuery", searchState.searchQuery);
     params.set("page", searchState.page.toString());
@@ -40,18 +40,18 @@ export const useSearchRestaurants = (
     params.set("sortOption", searchState.sortOption);
 
     const response = await fetch(
-      `${API_BASE_URL}/api/restaurant/search/${city}?${params.toString()}`
+      `${API_BASE_URL}/api/store/search/${city}?${params.toString()}`
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get restaurant");
+      throw new Error("Failed to get store");
     }
 
     return response.json();
   };
 
   const { data: results, isLoading } = useQuery(
-    ["searchRestaurants", searchState],
+    ["searchStores", searchState],
     createSearchRequest,
     { enabled: !!city }
   );

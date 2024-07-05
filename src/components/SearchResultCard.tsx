@@ -1,10 +1,10 @@
-import { Restaurant } from "@/types";
+import { Store } from "@/types";
 import { Link } from "react-router-dom";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { Banknote, Clock, Dot } from "lucide-react";
 
 type Props = {
-  restaurant: Restaurant;
+  restaurant: Store;
 };
 
 const SearchResultCard = ({ restaurant }: Props) => {
@@ -35,7 +35,7 @@ const SearchResultCard = ({ restaurant }: Props) => {
           <div className="flex gap-2 flex-col">
             <div className="flex items-center gap-1 text-green-600">
               <Clock className="text-green-600" />
-              {restaurant.estimatedDeliveryTime} mins
+              {restaurant.estimatedDeliveryTime} days
             </div>
             <div className="flex items-center gap-1">
               <Banknote />
