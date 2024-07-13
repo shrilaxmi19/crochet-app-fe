@@ -72,7 +72,7 @@ const SearchPage = () => {
   }
 
   if (!results?.data || !city) {
-    return <span>No results found. Please enter a valid City</span>;
+    return <span>Loading...</span>;
   }
 
   return (
