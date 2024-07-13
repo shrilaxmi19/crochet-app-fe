@@ -15,7 +15,6 @@ const UsernameMenu = () => {
 
   // Retrieve admin emails from environment variables and split into an array, providing a default empty string
   const adminEmails = (import.meta.env.VITE_ADMIN_EMAILS || "").split(",");
-  console.log(import.meta.env.VITE_ADMIN_EMAILS , "em");
 
   // Check if the user is an admin
   const isAdmin = user?.email && adminEmails.includes(user.email);
